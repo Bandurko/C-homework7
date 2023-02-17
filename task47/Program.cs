@@ -29,7 +29,7 @@ double[,] GetArray(int m, int n, double minValue, double maxValue)
     {
         for (int j = 0; j < n; j++)
         {
-            result[i, j] = new Random().NextDouble() * (maxValue - minValue) + minValue;
+            result[i, j] = new Random().NextDouble() * ((maxValue + 1) - minValue) + minValue;
         }
     }
     return result;
