@@ -17,23 +17,25 @@ using static System.Console;
 
 Clear();
 
-Write("Введите номер строки искомого элемента массива: ");
-int y=int.Parse(ReadLine());
+int rows = new Random().Next(4, 11);
+int columns = new Random().Next(4, 11);
 
 Write("Введите номер строки искомого элемента массива: ");
-int x=int.Parse(ReadLine());
+int y = int.Parse(ReadLine());
 
-int rows = new Random().Next(0, 11);
-int columns = new Random().Next(0, 11);
+Write("Введите номер столбца искомого элемента массива: ");
+int x = int.Parse(ReadLine());
 
 int[,] array = GetArray(rows, columns, 0, 10);
 PrintArray(array);
 
-// int findel = GetFindElem((array));
-//  WriteLine($"Элемент [{String.Join(", ", y, x)}] в данном ассиве равен {findel}");
-
-//  WriteLine($"Элемента [{String.Join(", ", y, x)}] в данном ассиве нет");
-
+if (FindElem(array, y, x))
+{
+    Console.WriteLine($"Элемент [{y}, {x}] в данном массиве равен {array[y,x]}");
+}
+else{
+    Console.WriteLine($"Элемента с индексом [{y}, {x}] в данном массиве нет");
+}
 
 int[,] GetArray(int m, int n, int minValue, int maxValue)
 {
@@ -61,30 +63,9 @@ void PrintArray(int[,] inArray)
 }
 
 
-void PrintFindElem(int[,] inArray, int y, int x)
-{    
-    /*for (int i = 0; i < inArray.GetLength(0); i++)
-    {
-        for (int j = 0; j < inArray.GetLength(1); j++)
-        {
-            if (i == y && j == x)
-            Write($"Элемент [{y}, {x}] в данном ассиве равен {array[i,j]}");
-        }
-            WriteLine($"Элемента [{y}, {x}] в данном ассиве нет");
-        
-    }
-     int findelem = null;
-    for (int i = 0; i < array.GetLength(0); i++)
-    {
-        for (int j = 0; j < array.GetLength(1); j++)
-        {
-            if (array[i, j] == array[y, x])
-            {
-                findelem = array[i, j];
-                break;
-            }
-            
-        }
-    }
-    return findelem; */
+bool FindElem(int[,] array, int y, int x)
+{
+    int j = array.GetLength(0);
+    int i = array.GetLength(1);
+    return (0 <= y && y <= j && 0 <= x && x <= i);
 }
